@@ -2,11 +2,14 @@ const express = require("express");
 const recipies = require("./receitas.json");
 
 const app = express();
+app.set("view engine", "ejs");
+app.use(express.urlencoded());
 
 const ing = recipies;
 
 app.get("/", function(req, res) {
-  res.send("Api Receitas!");
+  const conta = ing.lengh;
+  res.render("home", { conta });
 });
 
 app.get("/recipies", function(req, res) {
